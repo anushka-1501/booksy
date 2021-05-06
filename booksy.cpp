@@ -251,6 +251,7 @@ public:
     }
    void donation() {
         char t[1000];
+        ofstream fout;
         cout << "\nEnter book title:\n";
         cin >> t;
         int counter = 0,c,pr;
@@ -272,7 +273,20 @@ public:
                     strcpy_s(b, bname);
                     strcpy_s(a, aname);
                     counter++;
-                    deletebname(t);
+                    fout.open("tempfile.txt",
+                        ios::app);
+                    fin.read((char*)this, sizeof(*this));
+
+                    // Until end of file is not reached
+                    while (!fin.eof()) {
+                        if (strcmp(bname, t))
+                            fout.write((char*)this, sizeof(*this));
+                        fin.read((char*)this, sizeof(*this));
+                    }
+                    fin.close();
+                    fout.close();
+                    remove("books.txt");
+                    rename("tempfile.txt", "books.txt");
                     ofstream fout;
                     fout.open("books.txt", ios::app | ios::binary);
                     fout << b << setw(30) << a << setw(30) << pr << setw(30) << c;
@@ -307,6 +321,7 @@ public:
         char t[1000];
         cout << "\nEnter book title:\n";
         cin >> t;
+        ofstream fout;
         int counter = 0, c, pr,flag;
         char b[1000], a[1000];
         ifstream fin;
@@ -327,14 +342,41 @@ public:
                         strcpy_s(b, bname);
                         strcpy_s(a,aname);
                         counter++;
-                        deletebname(t);
+                        fout.open("tempfile.txt",
+                            ios::app);
+                        fin.read((char*)this, sizeof(*this));
+
+                        // Until end of file is not reached
+                        while (!fin.eof()) {
+                            if (strcmp(bname, t))
+                                fout.write((char*)this, sizeof(*this));
+                            fin.read((char*)this, sizeof(*this));
+                        }
+                        fin.close();
+                        fout.close();
+                        remove("books.txt");
+                        rename("tempfile.txt", "books.txt");
                         ofstream fout;
                         fout.open("books.txt", ios::app | ios::binary);
                         fout << b << setw(30) << a << setw(30) << pr << setw(30) << c;
                         fout.close();
                     }
                     else if (copies == 1) {
-                        deletebname(t);
+                        fout.open("tempfile.txt",
+                            ios::app);
+                        fin.read((char*)this, sizeof(*this));
+
+                        // Until end of file is not reached
+                        while (!fin.eof()) {
+                            if (strcmp(bname, t))
+                                fout.write((char*)this, sizeof(*this));
+                            fin.read((char*)this, sizeof(*this));
+                        }
+                        fin.close();
+                        fout.close();
+                        cout << "deleted\n";
+                        remove("books.txt");
+                        rename("tempfile.txt", "books.txt");
                     }
                     else {
                         cout << "\nSOLD OUT\n";
@@ -346,7 +388,7 @@ public:
             if (counter == 0) {
                 cout << "\nNot Available\n";
             }
-
+            cout << "Pay at the counter!\n";
             fin.close();
         }
     }
@@ -417,9 +459,9 @@ int main()
             cout << "1)Buy a book\n2)Donate a book\n3)Search a book by name\n4)Search a book by author name\n5)Exit\n";
             cin >> y;
             switch (y) {
-            case 1:c.buybook();
+            case 1:m.buy();
                 break;
-            case 2:c.donatebook();
+            case 2:m.donation();
                 break;
             case 3:c.searchbyname();
                 break;
