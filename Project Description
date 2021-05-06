@@ -1,0 +1,2 @@
+This is a bookstore management program written in c++. I have used classes and data file handling. There are three classes- Manage, Customer and Password.
+The management menu is protected with the help of the password class. Password and username have been written in the code. If by chance someone forgets the username/password, there is a recovery option as well
