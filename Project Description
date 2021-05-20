@@ -1,2 +1,13 @@
 This is a bookstore management program written in c++. I have used classes and data file handling. There are three classes- Manage, Customer and Password.
 The management menu is protected with the help of the password class. Password and username have been written in the code. If by chance someone forgets the username/password, there is a recovery option as well
+*************The username is- booksy_anu and the password is 123456*************
+There are options of buying and donating for the customer. The donated books are added to a different text file and the bought book copies reduce by one. The customer can search for books by the book name as well as the authorname.
+The Manager can check the inventory, add books, deletebooks, update book information, search for the books, display and delete donated book information.
+
+INPUT SHOULD BE GIVEN WITHOUT SPACE. Sample input is below-
+BOOKNAME:harrypotter
+AUTHORNAME: jkrowling
+PRICE: 500
+NUMBER OF COPIES: 88
+
+everytime a book title has to be input, write it as harrypotter and not as harry potter.
